@@ -1,12 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const [navcolor, setnavcolor] = useState(
+    "bg-gradient-to-r from-cyan-500 to-red-400"
+  );
+  useEffect(() => {
+    const colorInterval = setInterval(() => {
+      setnavcolor((prevColor) =>
+        prevColor === "bg-gradient-to-r from-cyan-500 to-red-400"
+          ? "bg-gradient-to-r from-red-400 to-cyan-500"
+          : "bg-gradient-to-r from-cyan-500 to-red-400"
+      );
+      console.log("navcolor updated:", navcolor);
+    }, 2000);
+
+    return () => clearInterval(colorInterval);
+  }, [navcolor]);
+
   return (
     <div>
-      <nav className="bg-blue-500 p-2">
+      <nav className={`p-2 ${navcolor} transition-colors animate-pulse `}>
         <div className="container mx-auto flex justify-between items-center">
           <div className="text-white text-xl font-bold">
             <Link to={"/"}>
@@ -39,61 +55,65 @@ const Navbar = () => {
           <div className="hidden lg:flex lg:items-center lg:w-auto">
             <ul className="text-white lg:flex lg:justify-between">
               <li className="lg:ml-4">
-                <a
-                  href="#about"
+                <Link
+                  to={"/services"}
                   className="block mt-4 lg:inline-block lg:mt-0 hover:text-gray-200"
                 >
                   Services
-                </a>
+                </Link>
               </li>
               <li className="lg:ml-4">
-                <a
-                  href="#about"
+                <Link
+                  to={"/aboutus"}
                   className="block mt-4 lg:inline-block lg:mt-0 hover:text-gray-200"
                 >
                   About Us
-                </a>
+                </Link>
               </li>
               <li className="lg:ml-4">
-                <a
-                  href="#contact"
+                <Link
+                  to={"/contactus"}
                   className="block mt-4 lg:inline-block lg:mt-0 hover:text-gray-200"
                 >
                   Contact Us
-                </a>
+                </Link>
               </li>
               <li className="lg:ml-4">
-                <a
-                  href="#contact"
+                <Link
+                  to={"/locations"}
                   className="block mt-4 lg:inline-block lg:mt-0 hover:text-gray-200"
                 >
                   Locations
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
         </div>
         {/* Dropdown Menu */}
         {isOpen && (
-          <div className="block lg:hidden bg-blue-500">
+          <div className="block lg:hidden bg-gradient-to-r from-red-400 to-cyan-500">
             <ul className="text-white">
               <li className="border-t border-white">
-                <a href="#about" className="block px-4 py-2 hover:bg-blue-700">
+                <Link
+                  to={"/aboutus"}
+                  className="block px-4 py-2 hover:bg-blue-700"
+                >
                   About Us
-                </a>
+                </Link>
               </li>
               <li className="border-t border-white">
-                <a
-                  href="#contact"
+                <Link
+                  to={"/contactus"}
                   className="block px-4 py-2 hover:bg-blue-700"
                 >
                   Contact Us
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
         )}
       </nav>
+
       <Outlet />
     </div>
   );

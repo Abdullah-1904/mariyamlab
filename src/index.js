@@ -7,6 +7,10 @@ import { RouterProvider } from "react-router";
 import Navbar from "./components/navbar";
 import ErrorFile from "./pages/errorfile/errorfile";
 import Home from "./pages/home/home";
+import Services from "./pages/servic/services";
+import About from "./pages/about/about";
+import Contact from "./pages/contact/contact";
+import Location from "./pages/location/location";
 
 const route = createBrowserRouter([
   {
@@ -16,6 +20,22 @@ const route = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/services",
+        element: <Services />,
+      },
+      {
+        path: "/aboutus",
+        element: <About />,
+      },
+      {
+        path: "/contactus",
+        element: <Contact />,
+      },
+      {
+        path: "/locations",
+        element: <Location />,
       },
     ],
   },
