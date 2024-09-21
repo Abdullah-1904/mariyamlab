@@ -27,10 +27,10 @@ const Navbar = () => {
           <div className="text-white text-xl font-bold">
             <Link to={"/"}>
               <div className="flex flex-row">
-                <div className="w-10 m-0 p-0 mx-4">
-                  <img src="logo1.png" alt="" />
+                <div className="w-12 m-0 p-0 mx-4">
+                  <img src="SehatLabsLogoremovebg.png" alt="" />
                 </div>
-                <div className="mt-3">Mariyam Labs</div>
+                <div className="mt-3">Sehat Labs</div>
               </div>
             </Link>
           </div>
